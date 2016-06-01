@@ -11,6 +11,9 @@ class Banco{
 	public function __construct(){
 		$this->database = DataSources::$database;
 		$this->conn = new PDO( "mysql:host={$this->database['host']};dbname={$this->database['dbname']}" , $this->database['user'] , $this->database['password'] ); 
+		// linha para nao se preocupar com o tipo do dado
+		$this->conn->setAttribute( PDO::ATTR_EMULATE_PREPARES, false );
+		
 	}
 
 	public function preparaSQL( $SQL ){

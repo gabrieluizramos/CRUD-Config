@@ -1,4 +1,7 @@
 <?php
+
+require_once 'datasources.php';
+
 class FileUpload{
 
 	// geral
@@ -12,15 +15,26 @@ class FileUpload{
 	public $isMultiple;
 	public $multipleFileFullName;
 	public $multipleFileNames;
-
-
-	public function __construct( $path,  $file , $prefix , $isMultiple = false){
+	// options do datasources
+	public $generalFileOptions;
+	public $fileInfo;
+	public $multipleFileInfo;
+	/*
+	**to list file options
+	list( $width , $height ) = $object->fileInfo;
+	echo $width;
+	*/
+	public function __construct( $path,  $file , $prefix , $isMultiple = false ){
+		// valores do datasources
+		$this->generalFileOptions = DataSources::$file;
 		// variaveis gerais
 		$this->filePath = $path;
 		$this->prefix = $prefix;
 		$this->file = $file;
 		$this->isMultiple = $isMultiple;
 		if ( !$this->isMultiple ) {
+			// informacoes sobre o arquivo
+			$this->fileInfo = getimagesize( $this->file['tmp_name'] );
 			// variaveis para unico arquivo
 			$this->fileName = $this->prefix . "-" . rand();
 			$this->fileExtension = explode( "." , $this->file["name"] );
@@ -32,6 +46,11 @@ class FileUpload{
 			$this->isMultiple = $isMultiple;
 			$this->multipleFileFullName = array();
 			$this->multipleFileNames = array();
+			$this->multipleFileInfo = array();
+			// valores de informacao
+			for ($i = 0 ; $i < count( $this->file['tmp_name'] ) ; $i++) {
+				array_push( $this->multipleFileInfo , getimagesize( $this->file['tmp_name'][$i] ) );
+			}
 			// para os novos nomes
 			foreach ( $this->file['name'] as $eachFile ) {
 				$this->fileName = $this->prefix . "-" . rand();

@@ -9,7 +9,6 @@ class Auth{
 		$regras = array(
 			':login' => $usuario ,
 			':senha' => $senha
-			
 			);
 		$banco->bindSQL( $regras );
 		$dados = $banco->executaSQL();
@@ -29,7 +28,6 @@ class Auth{
 	public static function logoff(){
 		session_destroy();
 		Header( "Location: " . DataSources::urlAdmin() . "login.php" );
-		die();
 	}
 }
 ?>
