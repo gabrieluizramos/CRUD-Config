@@ -75,5 +75,30 @@ class FileUpload{
 			return true;
 		}		
 	}
+
+	public static function removeFile( $path ){
+		return unlink( $path );
+	}
+
+	public static function removeFolder( $path ){
+		if ( is_dir( $path ) === true)	{
+			$files = array_diff( scandir( $path ), array('.', '..') );
+
+			foreach ($files as $file){
+				FileUpload::removeFolder( realpath( $path ) . '/' . $file );
+			}
+
+			return rmdir( $path );
+		}
+
+		else if ( is_file( $path ) === true ){
+			return unlink( $path );
+		}
+		return false;
+	}
+
+	public static function createFolder( $path ){
+		return mkdir( $path );
+	}
 }
 ?>
