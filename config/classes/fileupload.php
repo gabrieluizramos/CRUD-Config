@@ -104,5 +104,9 @@ class FileUpload{
 	public static function clearFolder( $path ){
 		return ( FileUpload::removeFolder( $path ) && FileUpload::createFolder( $path ) ) ? true : false;
 	}
+
+	public static function verifyFile( $path ){
+		return file_exists ( $path );
+	}
 }
 ?>
