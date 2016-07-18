@@ -100,5 +100,9 @@ class FileUpload{
 	public static function createFolder( $path ){
 		return mkdir( $path );
 	}
+
+	public static function clearFolder( $path ){
+		return ( FileUpload::removeFolder( $path ) && FileUpload::createFolder( $path ) ) ? true : false;
+	}
 }
 ?>
