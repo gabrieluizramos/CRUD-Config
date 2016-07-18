@@ -113,7 +113,7 @@ class FileUpload{
 	public static function verifyExtension( $path ){
 		$path = explode( '/' , $path );
 		$path = explode( '.' , ( $path[ count( $path ) - 1 ] ) );
-		$path = strtoupper( $path[ count( $path ) - 1 ] );
+		$path = $path[ count( $path ) - 1 ];
 		return $path;
 	}
 }
