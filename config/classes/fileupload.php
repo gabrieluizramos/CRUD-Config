@@ -24,6 +24,7 @@ class FileUpload{
 	list( $width , $height ) = $object->fileInfo;
 	echo $width;
 	*/
+	// create object with ( FILEPATH , $_FILES received , PREFIX , and TRUE OF FALSE for multiples )
 	public function __construct( $path,  $file , $prefix , $isMultiple = false ){
 		// valores do datasources
 		$this->generalFileOptions = DataSources::$file;
@@ -63,7 +64,7 @@ class FileUpload{
 			}
 		}
 	}
-
+	// make upload (after constructed)
 	public function doUpload(){
 		if ( !$this->isMultiple ) {
 			return ( move_uploaded_file( $this->file['tmp_name'] , $this->fileFullName ) ) ? true : false;
@@ -75,11 +76,11 @@ class FileUpload{
 			return true;
 		}		
 	}
-
+	// remove file
 	public static function removeFile( $path ){
 		return unlink( $path );
 	}
-
+	// delete all files of a folder and remove the directory
 	public static function removeFolder( $path ){
 		if ( is_dir( $path ) === true)	{
 			$files = array_diff( scandir( $path ), array('.', '..') );
@@ -96,17 +97,24 @@ class FileUpload{
 		}
 		return false;
 	}
-
+	// create folder
 	public static function createFolder( $path ){
 		return mkdir( $path );
 	}
-
+	// clear a folder (remove all folder and create again)
 	public static function clearFolder( $path ){
 		return ( FileUpload::removeFolder( $path ) && FileUpload::createFolder( $path ) ) ? true : false;
 	}
-
+	// verify if file exists and return true or false
 	public static function verifyFile( $path ){
 		return file_exists ( $path );
+	}
+	// receive filename string and return extension
+	public static function verifyExtension( $path ){
+		$path = explode( '/' , $path );
+		$path = explode( '.' , ( $path[ count( $path ) - 1 ] ) );
+		$path = strtoupper( $path[ count( $path ) - 1 ] );
+		return $path;
 	}
 }
 ?>
