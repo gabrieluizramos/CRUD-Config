@@ -48,17 +48,17 @@ class Paginate{
 		<?php if( $this->offset > 1 ) :?>
 
 		<li class="paginacao-item">
-			<a href="<?=$url?>?<?=$this->paginationTerm ?>=1" class="paginacao-link">&laquo;</a>
+			<a href="<?=$this->url?>?<?=$this->paginationTerm ?>=1" class="paginacao-link">&laquo;</a>
 		</li>
 
 		<li class="paginacao-item">
-			<a href="<?=$url?>?<?=$this->paginationTerm ?>=<?= ( $this->offset - 1 )?>" class="paginacao-link">&lsaquo;</a>
+			<a href="<?=$this->url?>?<?=$this->paginationTerm ?>=<?= ( $this->offset - 1 )?>" class="paginacao-link">&lsaquo;</a>
 		</li>
 
 		<?php endif;?>
 
 		<li class="paginacao-item">
-			<a href="<?=$url?>?<?=$this->paginationTerm ?>=1" class="paginacao-link"><?= $this->offset ?></a>
+			<a href="<?=$this->url?>?<?=$this->paginationTerm ?>=1" class="paginacao-link"><?= $this->offset ?></a>
 		</li>
 
 		<?php 
@@ -66,7 +66,7 @@ class Paginate{
 		for ( $i = $inicioPaginacao ; $i < $fimPaginacao ; $i++ ) : ?>
 
 		<li class="paginacao-item">
-			<a href="<?=$url?>?<?=$this->paginationTerm ?>=<?= ( $i + 1 )?>" class="paginacao-link"><?= ( $i + 1 )?></a>
+			<a href="<?=$this->url?>?<?=$this->paginationTerm ?>=<?= ( $i + 1 )?>" class="paginacao-link"><?= ( $i + 1 )?></a>
 		</li>
 
 		<?php endfor; ?>
@@ -74,7 +74,7 @@ class Paginate{
 		<?php if( $fimPaginacao < $this->totalPages ) :?>
 
 		<li class="paginacao-item">
-			<a href="<?=$url?>?<?=$this->paginationTerm ?>=<?= ( $fimPaginacao + 1 )?>" class="paginacao-link">&rsaquo;</a>
+			<a href="<?=$this->url?>?<?=$this->paginationTerm ?>=<?= ( $fimPaginacao + 1 )?>" class="paginacao-link">&rsaquo;</a>
 		</li>
 
 		<?php endif;?>
@@ -83,7 +83,7 @@ class Paginate{
 		<?php if( $this->offset < $this->totalPages ) :?>
 
 		<li class="paginacao-item">
-			<a href="<?=$url?>?<?=$this->paginationTerm ?>=<?= $this->totalPages?>" class="paginacao-link">&raquo;</a>
+			<a href="<?=$this->url?>?<?=$this->paginationTerm ?>=<?= $this->totalPages?>" class="paginacao-link">&raquo;</a>
 		</li>
 
 		<?php endif;?>
