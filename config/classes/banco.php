@@ -32,7 +32,13 @@ class Banco{
 		*/
 	}
 
-	// for $obj->fetch( PDO::FETCH_ASSOC );
+	/* 
+	for $obj->fetch( PDO::FETCH_ASSOC );
+	$obj->fetchAll();
+	$obj->fetchObject();
+	$obj->rowCount();
+	$obj->fetchColumn();
+	*/
 	public function executaSQL(){
 		$this->query->execute();
 		return $this->query;
