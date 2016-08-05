@@ -32,7 +32,7 @@ class TimeMachine{
 
 		$month = TimeMachine::formatFullDate( $date );
 		$month = explode( '/' , $month );
-		$month = $month[ 1 ];
+		$month = $month[ 0 ];
 
 		if ( $number ) {
 			return $month;
@@ -52,7 +52,7 @@ class TimeMachine{
 	public static function getMonthDay( $date ){
 		$day = TimeMachine::formatFullDate( $date );
 		$day = explode( '/' , $day );
-		$day = $day[ 0 ];
+		$day = $day[ 1 ];
 		return $day;
 	}
 }
