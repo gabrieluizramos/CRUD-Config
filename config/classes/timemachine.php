@@ -2,7 +2,7 @@
 class TimeMachine{
 
 	public static function formatFullDate( $date ){
-		return date( "d/m/Y" , strtotime( $date ) );
+		return date( "m/d/Y" , strtotime( $date ) );
 	}
 
 	public static function formatFullTime( $time ){
@@ -19,7 +19,7 @@ class TimeMachine{
 			return date( "w" , strtotime( TimeMachine::formatFullDate( $date ) ) );			
 		}
 		else{
-			return TimeMachine::consultWeekDay( ( date( "w" , strtotime( TimeMachine::formatFullDate( $date ) ) ) ) - 1 );
+			return TimeMachine::consultWeekDay( ( date( "w" , strtotime( TimeMachine::formatFullDate( $date ) ) ) ) );
 		}	
 	}
 
